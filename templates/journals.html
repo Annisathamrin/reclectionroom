@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" class="{{ session.get('theme', 'light') }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Journals</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="{{ url_for('static', filename='toggle_theme.js') }}"></script>
+</head>
+<nav>
+    <a href="/">Home</a> |
+    <a href="/write">Write Journal</a> |
+    <a href="/journals">View Journals</a> |
+    <a href="/about">About</a> |
+    <a href="/toggle_theme">Toggle Theme</a>
+</nav>
+<body>
+    <div class="container">
+        <h1>My Journals</h1>
+
+        {% for journal in journals %}
+            <div class="journal-entry">
+                <h2>{{ journal.title }}</h2>
+                <p>{{ journal.content }}</p>
+                <p><i>{{ journal.date }}</i></p>
+            </div>
+        {% endfor %}
+
+        <a href="/write">Write New Journal</a> | <a href="/toggle_theme">Toggle Theme</a>
+    </div>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en" class="{{ session.get('theme', 'light') }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Journals</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .quote-container {
+            margin-top: 30px;
+            padding: 20px;
+            background: var(--card-background);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .quote-text {
+            font-size: 1.5rem;
+            font-style: italic;
+            color: var(--highlight-color);
+        }
+
+        .quote-author {
+            margin-top: 10px;
+            font-size: 1rem;
+            color: var(--text-color);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>My Journals</h1>
+        <ul>
+            {% for journal in journals %}
+                <li>
+                    <strong>{{ journal.date }}</strong>: {{ journal.content }}
+                </li>
+            {% endfor %}
+        </ul>
+        
+        <!-- Quotes Section -->
+        <div class="quote-container">
+            <p class="quote-text">"The pen is mightier than the sword, but the journal is mightier than the pen, Journaling is your conversation with your own soul. 
+                Your journal is a sanctuary, a place where your thoughts find their voice. happy writing:) "</p>
+            <p class="quote-author">- Chayy</p>
+        </div>
+        
+        <a href="/" class="back-link">Back to Home</a>
+    </div>
+</body>
+</html>
